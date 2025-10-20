@@ -1,0 +1,10 @@
+<view class="banner">
+   <swiper indicator-dots indicator-color="rgba(255,255,255,0.5)"
+   indicator-active-color="#fff" circular autoplay interval="2000">
+   <swiper-item><image src="/images/banner/banner_p2.jpg" show-menu-by-longpress></image></swiper-item>
+   <swiper-item><image src="/images/banner/banner_p3.jpg" show-menu-by-longpress></image></swiper-item>
+   </swiper>
+</view>
+
+<!-- 评论板块 -->
+<comment posts="{{posts}}" usersMap="{{usersMap}}" commentsMap="{{commentsMap}}" />
