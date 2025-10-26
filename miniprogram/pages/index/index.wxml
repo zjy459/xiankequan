@@ -9,5 +9,7 @@
    </swiper>
 </view>
 <!-- 评论板块 -->
-<!-- 评论板块 -->
 <comment posts="{{posts}}" usersMap="{{usersMap}}" commentsMap="{{commentsMap}}" />
+
+<van-button type="primary" bindtap="goToTargetPage" block>发帖</van-button>
+

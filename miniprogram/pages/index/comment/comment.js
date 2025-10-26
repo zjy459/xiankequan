@@ -1,9 +1,7 @@
+const commentData = require('../../../utils/commentData.js');
+
 Component({
-  properties: {
-    posts: Array,
-    usersMap: Object,
-    commentsMap: Object,
-  },
+  properties: {},
   data: {
     showCommentModal: false,
     modalType: '',
@@ -13,25 +11,42 @@ Component({
     currentPostId: '',
     inputFocus: false,
     modalAnimation: '',
+    posts: [],
+    usersMap: {},
+    commentsMap: {},
+  },
+  lifetimes: {
+    attached() {
+      this.refreshData();
+    },
+  },
+  pageLifetimes: {
+    show() {
+      this.refreshData();
+    },
   },
   methods: {
+    refreshData() {
+      const posts = commentData.getPosts();
+      const commentsMap = commentData.getCommentsMap();
+      const usersMap = commentData.getUsersMap();
+      this.setData({ posts, commentsMap, usersMap });
+    },
+
     async onLike(e) {
       const postId = e.currentTarget.dataset.id;
-      const userId = 'currentUserId'; // 假设有登录用户
+      const userId = commentData.CURRENT_USER_ID;
       await wx.cloud.callFunction({
         name: 'mcloud',
-        data: { router: 'post/like', postId, userId }
+        data: { router: 'post/like', postId, userId },
       });
       this.triggerEvent('reload');
     },
 
     onComment(e) {
-      this.setData({
-        showCommentModal: true,
-        modalType: 'input',
-        currentPostId: e.currentTarget.dataset.id,
-        commentContent: '',
-        inputFocus: true
+      const postId = e.currentTarget.dataset.id; // 获取帖子 ID
+      wx.navigateTo({
+        url: `./CommentDetail/CommentDetail?postId=${postId}`, // 跳转到 CommentDetail 页面
       });
     },
 
@@ -43,25 +58,7 @@ Component({
         commentDetailCount: 0,
         commentContent: '',
         inputFocus: false,
-        currentPostId: ''
-      });
-    },
-  
-
-    async onCommentDetail(e) {
-      const postId = e.currentTarget.dataset.id;
-      const commentsRes = await wx.cloud.callFunction({
-        name: 'mcloud',
-        data: { router: 'comment/list', postId }
-      });
-      this.setData({
-        showCommentModal: true,
-        modalType: 'detail',
-        commentDetailList: commentsRes.result.data || [],
-        commentDetailCount: (commentsRes.result.data || []).length,
-        currentPostId: postId,
-        commentContent: '',
-        inputFocus: false
+        currentPostId: '',
       });
     },
   },

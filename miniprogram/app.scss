@@ -3,8 +3,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+wx-button::after {
+  border: 0 !important;
+  box-shadow: none !important;
+  content: none !important;
+  background: transparent !important;
+}

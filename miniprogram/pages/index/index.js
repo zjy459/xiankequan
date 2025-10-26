@@ -41,4 +41,12 @@ Page({
 
     this.setData({ posts, usersMap, commentsMap });
   },
+  
+  //跳转到某个页面
+  goToTargetPage() {
+    wx.navigateTo({
+      url: './Post/Post' // 这里写目标页面的路径
+    });
+  }
+  
 });

@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "comment": "./comment/comment"
+    "comment": "./comment/comment",
+    "CommentDetail":"./CommentDetail/CommentDetail",
+    "Post":"./Post/Post"
   }
 }

@@ -1,89 +1,38 @@
-
 <!-- 评论板块 -->
 <view class="post-list">
   <block wx:for="{{posts}}" wx:key="_id">
     <view class="post-item">
-      <view class="nickname">{{usersMap[item.userId].nickname}}</view>
+      <view class="nickname">
+        {{(usersMap[item.userId] && usersMap[item.userId].nickname) || '匿名用户'}}
+      </view>
       <view class="content">
         <text class="item-title">{{item.title}}</text>
       </view>
       <view class="post-footer">
         <view class="time">{{item.createTime}}</view>
         <view class="actions">
-          <button size="mini" bindtap="onLike" data-id="{{item._id}}">❤ {{item.likeCount}}</button>
-          <button size="mini" bindtap="onComment" data-id="{{item._id}}">💬 {{item.commentCount}}</button>
+          <button class="action-btn" size="mini" bindtap="onLike" data-id="{{item._id}}">
+            ❤ {{item.likeCount}}
+          </button>
+          <button class="action-btn" size="mini" bindtap="onComment" data-id="{{item._id}}">
+            💬 {{item.commentCount}}
+          </button>
         </view>
       </view>
-
       <!-- 评论展示 -->
       <view wx:if="{{item.commentCount > 0}}" class="comment-panel">
         <block wx:for="{{commentsMap[item._id]}}" wx:for-item="comment" wx:for-index="commentIdx" wx:key="_id">
-          <view wx:if="{{commentIdx < 3}}" class="comment-row">
-            <text class="comment-author">{{usersMap[comment.userId].nickname}}</text>
+          <view wx:if="{{commentIdx < 2}}" class="comment-row">
+            <text class="comment-author">
+              {{(usersMap[comment.userId] && usersMap[comment.userId].nickname) || '匿名用户'}}
+            </text>
             <text class="comment-content">{{comment.content}}</text>
           </view>
-          <view wx:if="{{commentIdx >=3}}" class="comment-count-row" bindtap="onCommentDetail" data-id="{{item._id}}">
-          共{{commentIdx}}条评论>
-        </view>
         </block>
+        <view wx:if="{{commentsMap[item._id].length > 2}}" class="comment-count-row" bindtap="onComment" data-id="{{item._id}}">
+          共{{commentsMap[item._id].length}}条评论 >
+        </view>
       </view>
     </view>
   </block>
-</view>
-
-
-<!-- 评论弹窗 -->
-<view wx:if="{{showCommentModal}}">
-  <view class="modal-mask" bindtap="closeCommentModal"></view>
-  <view class="modal-content {{modalAnimation}}">
-    <!-- 顶部拖拽条和标题仅在详情弹窗显示 -->
-    <view wx:if="{{modalType === 'detail'}}">
-      <view class="modal-bar"></view>
-      <view class="modal-title">评论 {{commentDetailCount}}</view>
-    </view>
-    <!-- 评论详情，仅在详情弹窗显示 -->
-    <scroll-view wx:if="{{modalType === 'detail'}}" scroll-y class="comment-scroll">
-      <block wx:for="{{commentDetailList}}" wx:key="_id">
-        <view class="comment-row">
-          <view class="comment-main">
-            <view class="comment-header">
-              <text class="comment-author">{{usersMap[item.userId].nickname}}</text>
-            </view>
-            <view class="comment-content">
-              <text wx:if="{{item.replyToUserId}}">回复 {{usersMap[item.replyToUserId].nickname}}：</text>
-              <text>{{item.content}}</text>
-            </view>
-            <view class="comment-meta">
-              <text class="comment-time">{{item.createTime}}</text>
-              <text class="comment-reply-btn" bindtap="onReply" data-id="{{item._id}}">回复</text>
-            </view>
-          </view>
-          <view class="comment-like-btn">
-            <icon type="heart" size="24" color="#ccc"></icon>
-          </view>
-        </view>
-      </block>
-      <view class="no-more">
-        - 暂无更多评论 -
-      </view>
-    </scroll-view>
-    <!-- 输入框和 action row（两种弹窗都显示，focus条件不同） -->
-    <view class="modal-bottom">
-      <textarea
-        class="modal-input"
-        placeholder="发言要友善，畅聊不引战"
-        auto-height
-        focus="{{modalType === 'input' ? showCommentModal : inputFocus}}"
-        bindinput="onCommentInput"
-        value="{{commentContent}}"
-      ></textarea>
-      <view class="action-row">
-        <view class="icon-group">
-          <image class="action-icon" src="/images/icons/ai_te.png" mode="aspectFit" />
-          <image class="action-icon" src="/images/icons/picture.png" mode="aspectFit" />
-        </view>
-        <button class="send-btn" bindtap="sendComment">发送</button>
-      </view>
-    </view>
-  </view>
 </view>

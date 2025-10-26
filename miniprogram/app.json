@@ -4,42 +4,47 @@
     "pages/popular/popular",
     "pages/important/important",
     "pages/Daily_complaints/Daily_complaints",
-    "pages/oldshoppings/oldshoppings"
+    "pages/oldshoppings/oldshoppings",
+    "pages/index/CommentDetail/CommentDetail",
+    "pages/index/Post/Post"
   ],
   "window": {
-		"backgroundColor": "#f1f1f1",
-		"backgroundTextStyle": "dark",
-		"navigationBarBackgroundColor": "#636DEA",
-		"navigationBarTitleText": "现科圈",
+    "backgroundColor": "#f1f1f1",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#636DEA",
+    "navigationBarTitleText": "现科圈",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
-    "tabBar": {
-      "position": "top",
-      "list": [
-        {
-          "pagePath":"pages/index/index",
-          "text": "全部"
-        },
-        {
-          "pagePath": "pages/popular/popular",
-          "text": "热门"
-        },
-        {
-          "pagePath":  "pages/important/important",
-          "text": "精华"
-        },
-        {
-          "pagePath": "pages/Daily_complaints/Daily_complaints",
-          "text": "日常吐槽"
-        },
-        {
-          "pagePath": "pages/oldshoppings/oldshoppings",
-          "text": "二手交易"
-        }
-      ]
-    },
+  "tabBar": {
+    "position": "top",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "全部"
+      },
+      {
+        "pagePath": "pages/popular/popular",
+        "text": "热门"
+      },
+      {
+        "pagePath": "pages/important/important",
+        "text": "精华"
+      },
+      {
+        "pagePath": "pages/Daily_complaints/Daily_complaints",
+        "text": "日常吐槽"
+      },
+      {
+        "pagePath": "pages/oldshoppings/oldshoppings",
+        "text": "二手交易"
+      }
+    ]
+  },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
 }

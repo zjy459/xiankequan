@@ -4,11 +4,7 @@
   padding: 24rpx;
 }
 .post-item {
-  background: #fff;
-  border-radius: 12rpx;
   margin-bottom: 24rpx;
-  padding: 20rpx 12rpx;
-  box-shadow: 0 2rpx 16rpx #eee;
   position: relative;
   border-bottom: 1px solid #eee;
 }
@@ -65,17 +61,20 @@
   flex-direction: row; 
   gap: 16rpx;
 }
-.actions button { 
+.action-btn{ 
   margin-right: 12rpx; 
+  background-color: rgb(252, 252, 252);
+  border: none !important;
+  box-shadow: none !important;
+  color: #1f2a44;
 }
 
 /* 评论板块 */
 .comment-panel { 
-  background: #fff;
+  background-color: #f1efef;
   border-radius: 18rpx;
   margin: 12rpx 0 0 0;
   padding: 24rpx 24rpx 12rpx 24rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.04);
   margin-top: 10rpx; 
 }
 
@@ -83,15 +82,13 @@
 .comment-row { 
   font-size: 28rpx; 
   color: #333;
-  margin-bottom: 12rpx; 
-  line-height: 1.7;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 .comment-author { 
   font-weight: 600; 
-  color: #5bbcff; 
+  color: #363636; 
   margin-right: 8rpx;
 }
 .comment-content { 
