@@ -21,7 +21,14 @@ const posts = [
     title: "第二篇文章标题",
     createTime: "2025-10-19 10:00",
     likeCount: 2
-  }
+  },
+  {
+    _id: "post3",
+    userId: "user3",
+    title: "第三篇文章标题",
+    createTime: "2025-10-20 14:30",
+    likeCount: 5
+  },
 ];
 
 const comments = [
@@ -69,6 +76,24 @@ const comments = [
     time: "2025年10月18日 17:26",
     parentId: 3,
     replyId: 4
+  },
+    {
+    id: 6,
+    postId: "post2",
+    userId: "user2",
+    content: "大家快去办理吧!!!",
+    time: "2025年10月18日 16:03",
+    parentId: 0,
+    replyId: 0
+  },
+  {
+    id: 7,
+    postId: "post3",
+    userId: "user3",
+    content: "办理优待证大概需要多长时间呢会不会需要特别长时间",
+    time: "2025年10月18日 17:26",
+    parentId: 0,
+    replyId: 0
   }
 ];
 

@@ -3,6 +3,7 @@ const commentData = require('../../../utils/commentData.js');
 Component({
   properties: {},
   data: {
+    loading: true,
     showCommentModal: false,
     modalType: '',
     commentDetailList: [],
@@ -14,10 +15,27 @@ Component({
     posts: [],
     usersMap: {},
     commentsMap: {},
+    showShare: false,
+    options: [
+      [
+        { name: '微信', icon: 'wechat' },
+        { name: '微博', icon: 'weibo' },
+        { name: 'QQ', icon: 'qq' },
+      ],
+      [
+        { name: '复制链接', icon: 'link' },
+        { name: '分享海报', icon: 'poster' },
+        { name: '二维码', icon: 'qrcode' },
+      ],
+    ],
   },
   lifetimes: {
     attached() {
-      this.refreshData();
+      this.setData({ loading: true });
+      setTimeout(() => {
+        this.refreshData();
+        this.setData({ loading: false });
+      }, 1500); // 模拟1.5秒加载
     },
   },
   pageLifetimes: {
@@ -60,6 +78,18 @@ Component({
         inputFocus: false,
         currentPostId: '',
       });
+    },
+    onShare(event) {
+      this.setData({ showShare: true });
+    },
+
+    onClose() {
+      this.setData({ showShare: false });
+    },
+
+    onSelect(event) {
+      Toast(event.detail.name);
+      this.onClose();
     },
   },
 });

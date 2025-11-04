@@ -1,4 +1,8 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-share-sheet": "@vant/weapp/share-sheet/index"
+  }
 }

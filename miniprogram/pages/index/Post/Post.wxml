@@ -1,19 +1,6 @@
-<form bindsubmit="formSubmit" id="1" bindreset="formReset">    
-  <van-field
-    value="{{ username }}"
-    clearable="{{true}}"
-    label="用户名"
-    placeholder="请输入用户名"
-    bind:click-icon="onClickIcon"
-  />
-  <van-field
-    value="{{ password }}"
-    type="password"
-    label="密码"
-    placeholder="请输入密码"
-    border="{{false}}"
-  />
-
+<form bindsubmit="formSubmit" id="1" bindreset="formReset">
+  <van-field value="{{ username }}" clearable="{{true}}" label="用户名" placeholder="请输入用户名" bind:click-icon="onClickIcon" />
+  <van-field value="{{ password }}" type="password" label="密码" placeholder="请输入密码" border="{{false}}" />
   <van-radio-group value="{{ radio }}" bind:change="onChange">
     <van-cell-group>
       <van-cell title="失物招领" clickable data-name="1" bind:click="onClick">
@@ -30,16 +17,16 @@
       </van-cell>
     </van-cell-group>
   </van-radio-group>
-
+  <van-uploader file-list="{{ fileList }}" disabled="true" max-count="9" bind:after-read="afterRead" deletable="{{ true }}" />
   <view class="big-logos">
     <view class="big-logos_img">
       <image bindtap="upimg" src="http://www.ar1es.cn/cimg.png" />
     </view>
-    <block wx:for="{{img_arr}}" wx:for-item="item" wx:for-index="index" wx:key="index"> 
-      <view class="logoinfo">    
+    <block wx:for="{{img_arr}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class="logoinfo">
         <image src="{{item}}" mode="aspectFit" />
-      </view>  
-    </block>    
-  </view>    
+      </view>
+    </block>
+  </view>
   <van-button type="primary" block>发布</van-button>
 </form>

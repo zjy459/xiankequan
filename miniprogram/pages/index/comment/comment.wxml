@@ -1,5 +1,7 @@
+<!-- 骨架屏 -->
+<van-skeleton wx:if="{{loading}}" title avatar row="5" loading="{{ loading }}"></van-skeleton>
 <!-- 评论板块 -->
-<view class="post-list">
+<view wx:else class="post-list">
   <block wx:for="{{posts}}" wx:key="_id">
     <view class="post-item">
       <view class="nickname">
@@ -11,14 +13,11 @@
       <view class="post-footer">
         <view class="time">{{item.createTime}}</view>
         <view class="actions">
-          <button class="action-btn" size="mini" bindtap="onLike" data-id="{{item._id}}">
-            ❤ {{item.likeCount}}
-          </button>
-          <button class="action-btn" size="mini" bindtap="onComment" data-id="{{item._id}}">
-            💬 {{item.commentCount}}
-          </button>
+          <van-icon name="like-o" size="20px" />
+          <van-icon name="share-o" size="20px" bind:click="onShare" />
         </view>
       </view>
+      <van-share-sheet overlay-style="background: rgba(0,0,0,0.2);" show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect" bind:close="onClose" />
       <!-- 评论展示 -->
       <view wx:if="{{item.commentCount > 0}}" class="comment-panel">
         <block wx:for="{{commentsMap[item._id]}}" wx:for-item="comment" wx:for-index="commentIdx" wx:key="_id">
@@ -30,7 +29,7 @@
           </view>
         </block>
         <view wx:if="{{commentsMap[item._id].length > 2}}" class="comment-count-row" bindtap="onComment" data-id="{{item._id}}">
-          共{{commentsMap[item._id].length}}条评论 >
+          展开{{commentsMap[item._id].length}}条评论 >
         </view>
       </view>
     </view>
