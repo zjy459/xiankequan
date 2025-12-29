@@ -1,5 +1,7 @@
 <!-- 骨架屏 -->
 <van-skeleton wx:if="{{loading}}" title avatar row="5" loading="{{ loading }}"></van-skeleton>
+<van-skeleton wx:if="{{loading}}" title avatar row="5" loading="{{ loading }}"></van-skeleton>
+<van-skeleton wx:if="{{loading}}" title avatar row="5" loading="{{ loading }}"></van-skeleton>
 <!-- 评论板块 -->
 <view wx:else class="post-list">
   <block wx:for="{{posts}}" wx:key="_id">

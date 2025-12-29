@@ -1,12 +1,17 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/login/login",
     "pages/popular/popular",
     "pages/important/important",
     "pages/Daily_complaints/Daily_complaints",
     "pages/oldshoppings/oldshoppings",
     "pages/index/CommentDetail/CommentDetail",
-    "pages/index/Post/Post"
+    "pages/index/Post/Post",
+    "pages/oldshoppings/goods-details/goods-details",
+    "pages/oldshoppings/shop-cart",
+    "pages/oldshoppings/shop-cart/shop-cart",
+    "pages/oldshoppings/template-cart/template-cart"
   ],
   "window": {
     "backgroundColor": "#f1f1f1",

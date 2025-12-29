@@ -3,12 +3,29 @@ Page({
     posts: [],
     usersMap: {},
     commentsMap: {},
+    active: 0,
   },
 
   async onLoad() {
     await this.loadPosts();
   },
-
+  onShow() {
+    const token = wx.getStorageSync('token');
+    if (!token) {
+      wx.showModal({
+        title: "未登录",
+        content: "请先登录",
+        showCancel: false,
+        success:()=>{
+          wx.navigateTo({
+            url: '/pages/index/login/login'
+          });
+        }
+      })
+      return;
+    }
+    // ... 有 token 时的正常业务
+  },
   // 加载帖子列表以及用户和评论数据
   async loadPosts() {
     // 获取帖子列表
@@ -41,12 +58,16 @@ Page({
 
     this.setData({ posts, usersMap, commentsMap });
   },
-  
+
   //跳转到某个页面
   goToTargetPage() {
     wx.navigateTo({
       url: './Post/Post' // 这里写目标页面的路径
     });
-  }
-  
+  },
+  //图标切换
+  onChange(event) {
+    this.setData({ active: event.detail });
+  },
+
 });

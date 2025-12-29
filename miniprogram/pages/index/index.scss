@@ -54,13 +54,17 @@ page {
   background: transparent;
 }
 
-/* 固定底部按钮 */
-.fixed-bottom-btn {
+.fab-btn {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20rpx 32rpx 40rpx;
-  background: transparent;
-  z-index: 100;
+  right: 40rpx;
+  bottom: 140rpx; // 保证不与tabbar重叠，tabbar高度一般约100rpx
+  width: 88rpx;
+  height: 88rpx;
+  background: #3d7eff;
+  border-radius: 50%;
+  box-shadow: 0 8rpx 32rpx rgba(61, 126, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }

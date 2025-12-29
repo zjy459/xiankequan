@@ -32,10 +32,10 @@ Component({
   lifetimes: {
     attached() {
       this.setData({ loading: true });
-      setTimeout(() => {
-        this.refreshData();
+      setTimeout(async () => {
+        await this.refreshData();
         this.setData({ loading: false });
-      }, 1500); // 模拟1.5秒加载
+      }, 1500);
     },
   },
   pageLifetimes: {
@@ -44,9 +44,9 @@ Component({
     },
   },
   methods: {
-    refreshData() {
-      const posts = commentData.getPosts();
-      const commentsMap = commentData.getCommentsMap();
+    async refreshData() {
+      const posts = await commentData.getPosts();
+      const commentsMap = await commentData.getCommentsMap();
       const usersMap = commentData.getUsersMap();
       this.setData({ posts, commentsMap, usersMap });
     },

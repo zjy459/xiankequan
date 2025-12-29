@@ -1,0 +1,6 @@
+<view class="login-container">
+  <image class="logo" src="../../images/comment/ruonan2.png"></image>
+  <view class="title">欢迎登录小程序</view>
+  <view class="tips">请点击按钮授权微信登录</view>
+  <button class="login-btn" type="primary" bindtap="onLoginClick">微信一键登录</button>
+</view>

@@ -1,2 +1,97 @@
-<!--pages/oldshoppings/oldshoppings.wxml-->
-<text>pages/oldshoppings/oldshoppings.wxml</text>
+<view class="search-container">
+  <view class="search">
+    <view class="search-title" 
+      style="height:{{navHeight-navTop-5}}px;line-height:{{navHeight-navTop-5}}px;width:{{132/52*(navHeight-navTop-5)}}px;">
+      二手圈
+    </view>
+    <input placeholder-class="search-placeholder"
+      style="width:{{menuButtonObject.left-18-((132/52)*(navHeight-navTop-5))}}px" type="text" placeholder="输入关键词搜索" disabled
+      value="{{name}}" bindinput="bindinput"></input>
+  </view>
+</view>
+
+<view class="category-container">
+  <view class="category-box">
+    <view class="category-list" wx:for="{{categories}}" wx:key="id">
+      <view class="category-column" bindtap="tabClick"
+        data-id="{{item.id}}">
+        <image mode="aspectFill" class="category-imgbox" src="{{item.icon}}"></image>
+        <view class="category-title">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<van-notice-bar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+
+<view class="container">
+  <van-skeleton wx:if="{{loading}}" row="6" title avatar animated />
+  <van-skeleton wx:if="{{loading}}" row="6" title avatar animated />
+  <van-skeleton wx:if="{{loading}}" row="6" title avatar animated />
+  <van-skeleton wx:if="{{loading}}" row="6" title avatar animated />
+  <van-skeleton wx:if="{{loading}}" row="6" title avatar animated />
+  <view wx:if="{{!loading}}">
+    <view class="space"></view>
+    <van-divider custom-class="table-text" wx:if="{{goodsRecommend.length > 0}}"
+      contentPosition="center">
+      <image class="table-icon-tuijian" src="../../images/icons/oldshopping/recommend.png"></image> 爆品推荐
+    </van-divider>
+    <view class="goods-container" wx:if="{{goodsRecommend.length > 0}}">
+      <view class="goods-box" wx:for="{{goodsRecommend}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">
+        <view class="img-box">
+          <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title van-multi-ellipsis--l2">{{item.name}}</view>
+        <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥ {{item.minPrice}}</view>
+          <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price"
+            style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="space"></view>
+  <block wx:if="{{pingtuanList.length > 0}}">
+    <view class='space'></view>
+    <van-divider custom-class="table-text" contentPosition="center">
+      <image class="table-icon-pingtuan" src="../../images/icons/oldshopping/pingtuan.png"></image> 全民拼团
+    </van-divider>
+    <view class='tuan'>
+      <view class='tuan-item' wx:for="{{pingtuanList}}" wx:key="id">
+        <view class='tuan-goods-pic'>
+          <image src="{{item.pic}}" mode="aspectFill" lazy-load='{{true}}' />
+        </view>
+        <view class='tuan-title'>{{item.name}}</view>
+        <view class='tuan-profile'>{{item.characteristic}}</view>
+        <van-tag custom-class="pingtuantag" wx:if="{{item.tags}}" type="danger">{{item.tags}}</van-tag>
+        <view class='tuan-price'>
+          <text class='now'>￥ {{item.pingtuanPrice}}</text>
+          <text class='original'>￥ {{item.originalPrice}}</text>
+        </view>
+        <view class="tuan-btn">
+          <button class="ptbtn" type="warn" size="mini" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">拼团</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class='space'></view>
+  <van-divider custom-class="table-text" contentPosition="center">
+    <image class="table-icon-goodslist" src="../../images/icons/oldshopping/goodslist.png"></image> 商品列表
+  </van-divider>
+  <view class="goods-container">
+    <view class="goods-box" wx:for="{{goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">
+      <view class="img-box">
+        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+      </view>
+      <view class="goods-title van-multi-ellipsis--l2">{{item.name}}</view>
+      <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view>
+      <view class="goods-price-container">
+        <view class="goods-price">¥ {{item.minPrice}}</view>
+        <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price2">¥ {{item.originalPrice}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-divider wx:if="{{ !loadingMoreHidden }}" contentPosition="center">没有更多啦</van-divider>
+</view>
