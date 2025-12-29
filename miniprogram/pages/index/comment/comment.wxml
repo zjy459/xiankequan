@@ -4,7 +4,7 @@
 <van-skeleton wx:if="{{loading}}" title avatar row="5" loading="{{ loading }}"></van-skeleton>
 <!-- 评论板块 -->
 <view wx:else class="post-list">
-  <block wx:for="{{posts}}" wx:key="_id">
+  <block wx:for="{{posts}}" wx:key="id">
     <view class="post-item">
       <view class="nickname">
         {{(usersMap[item.userId] && usersMap[item.userId].nickname) || '匿名用户'}}
@@ -22,7 +22,8 @@
       <van-share-sheet overlay-style="background: rgba(0,0,0,0.2);" show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect" bind:close="onClose" />
       <!-- 评论展示 -->
       <view wx:if="{{item.commentCount > 0}}" class="comment-panel">
-        <block wx:for="{{commentsMap[item._id]}}" wx:for-item="comment" wx:for-index="commentIdx" wx:key="_id">
+      <!-- <view>{{item.commentCount}}</view> -->
+        <block wx:for="{{commentsMap[item.id]}}" wx:for-item="comment" wx:for-index="commentIdx" wx:key="id">
           <view wx:if="{{commentIdx < 2}}" class="comment-row">
             <text class="comment-author">
               {{(usersMap[comment.userId] && usersMap[comment.userId].nickname) || '匿名用户'}}
@@ -30,8 +31,8 @@
             <text class="comment-content">{{comment.content}}</text>
           </view>
         </block>
-        <view wx:if="{{commentsMap[item._id].length > 2}}" class="comment-count-row" bindtap="onComment" data-id="{{item._id}}">
-          展开{{commentsMap[item._id].length}}条评论 >
+        <view wx:if="{{commentsMap[item.id].length > 2}}" class="comment-count-row" bindtap="onComment" data-id="{{item.id}}">
+          展开{{commentsMap[item.id].length}}条评论 >
         </view>
       </view>
     </view>

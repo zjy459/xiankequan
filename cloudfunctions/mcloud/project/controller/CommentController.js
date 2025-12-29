@@ -38,7 +38,7 @@ class CommentController {
     if (parentId) {
       await commentService.incReplyCount(parentId, 1)
     }
-    return { code: 0, id: addRes._id }
+    return { code: 0, id: addRes.id }
   }
 }
 

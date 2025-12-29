@@ -46,7 +46,7 @@ Page({
 
   resolveDefaultPostId() {
     const posts = commentData.getPosts();
-    return posts.length ? posts[0]._id : '';
+    return posts.length ? posts[0].id : '';
   },
 
   loadCommentData(postId) {

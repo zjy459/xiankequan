@@ -6,7 +6,7 @@ const usersMap = {
   user3: { nickname: "用户三", avatarUrl: "../../images/comment/ruonan1.png" },
   [CURRENT_USER_ID]: { nickname: "当前用户", avatarUrl: "../../images/comment/ruonan2.png" }
 };
-const API_BASE_URL = 'http://10.120.100.94:8081'; // 根据实际后端地址修改
+const API_BASE_URL = 'http://10.120.100.94:8081';// 根据实际后端地址修改
 
 // 获取所有帖子
 function getPosts() {
@@ -20,7 +20,7 @@ function getPosts() {
       },
       success: res => {
         if (res.statusCode === 200 && Array.isArray(res.data)) {
-          console.log(res.data);
+          console.log("POSTS",res.data);
           resolve(res.data);
         } else {
           reject(res);
@@ -55,7 +55,7 @@ function clone(obj) {
 
 function computeCommentCount() {
   posts.forEach((post) => {
-    const total = comments.filter((comment) => comment.postId === post._id).length;
+    const total = comments.filter((comment) => comment.postId === post.id).length;
     post.commentCount = total;
   });
 }
@@ -72,9 +72,10 @@ async function getCommentsMap() {
   const posts = await getPosts();
   const map = {};
   for (const post of posts) {
-    const comments = await getCommentsByPostId(post._id);
-    map[post._id] = comments.filter(c => c.parentId === 0).map(comment => ({
-      _id: `comment-${comment.id}`,
+    const comments = await getCommentsByPostId(post.id);
+    console.log("comments",comments)
+    map[post.id] = comments.filter(c => c.parentId === 0).map(comment => ({
+      id: `comment-${comment.id}`,
       userId: comment.userId,
       content: comment.content
     }));

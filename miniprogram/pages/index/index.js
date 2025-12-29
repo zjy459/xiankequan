@@ -1,8 +1,8 @@
 Page({
   data: {
-    posts: [],
-    usersMap: {},
-    commentsMap: {},
+    // posts: [],
+    // usersMap: {},
+    // commentsMap: {},
     active: 0,
   },
 
@@ -51,9 +51,9 @@ Page({
     for (const post of posts) {
       const commentsRes = await wx.cloud.callFunction({
         name: 'mcloud',
-        data: { router: 'comment/list', postId: post._id, limit: 4 }
+        data: { router: 'comment/list', postId: post.id, limit: 4 }
       });
-      commentsMap[post._id] = commentsRes.result.data || [];
+      commentsMap[post.id] = commentsRes.result.data || [];
     }
 
     this.setData({ posts, usersMap, commentsMap });
