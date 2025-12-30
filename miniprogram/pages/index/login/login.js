@@ -9,7 +9,7 @@ Page({
           return;
         }
         console.log("code:",res.code)
-        // 请求后端登录接口
+        // 请求后端登录接口   清除缓存时，登录状态信息会被清除，此时需要重新登录，否则在登陆的时候，一直会报后端login502的错误。
         wx.request({
           url: `${API_BASE_URL}/user/user/login`,
           method: 'POST',
