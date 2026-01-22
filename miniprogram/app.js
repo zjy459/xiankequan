@@ -1,6 +1,3 @@
-// app.js
-// const API_BASE_URL = 'http://192.168.37.64:8081'; // 假设你的后端端口是8081
-
 App({
   globalData: {
     token: '',

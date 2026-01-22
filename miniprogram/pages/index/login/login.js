@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://10.120.100.94:8081'; // 根据你的实际后端地址修改
+import config from "../../../config"
+const API_BASE_URL = config.BASE_URL; // 根据你的实际后端地址修改
 
 Page({
   onLoginClick() {

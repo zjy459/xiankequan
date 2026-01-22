@@ -1,5 +1,5 @@
-// pages/oldshoppings/oldshoppings.js
-const API_BASE_URL = 'http://10.120.100.94:8081';// TODO: 替换为真实后端地址
+import config from "../../config"
+const API_BASE_URL = config.BASE_URL; // 根据你的实际后端地址修改
 const APP = getApp()
 Page({
   data: {

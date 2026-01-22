@@ -1,4 +1,4 @@
-const commentData = require('../../../utils/commentData.js');
+import commentData from '../../../utils/commentData.js';
 
 Component({
   properties: {},
