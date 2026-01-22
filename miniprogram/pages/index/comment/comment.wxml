@@ -5,11 +5,11 @@
 <!-- 评论板块 -->
 <view wx:else class="post-list">
   <block wx:for="{{posts}}" wx:key="id">
-    <view class="post-item">
+    <view class="post-item" >
       <view class="nickname">
         {{(usersMap[item.userId] && usersMap[item.userId].nickname) || '匿名用户'}}
       </view>
-      <view class="content">
+      <view class="content" bindtap="onComment" data-id="{{item.id}}">
         <text class="item-title">{{item.title}}</text>
       </view>
       <view class="post-footer">

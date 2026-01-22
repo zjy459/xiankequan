@@ -49,13 +49,13 @@
 <view class="foot">
   <view class="say">
     <view class="flex">
-      <image class="say_img" src="/images/assemblyNumber/discoveryDetails/icon3.png"></image>
+      <image class="say_img" src=""></image>
       <input confirm-type="send" class="say_inp" placeholder="{{ placeholder }}" value="{{ comment_text }}" focus="{{ focus }}" bindblur="blur" bindconfirm="confirm"></input>
     </view>
   </view>
-  <image class="foot_img" src="/images/assemblyNumber/discoveryDetails/icon4.png"></image>
+  <image class="foot_img" src=""></image>
   <text class="foot_num">210</text>
-  <image class="foot_img2" src="/images/assemblyNumber/discoveryDetails/icon5.png"></image>
+  <image class="foot_img2" src=""></image>
   <text class="foot_num">368</text>
 </view>
 <!-- END -->

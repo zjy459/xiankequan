@@ -49,12 +49,13 @@ Page({
     return posts.length ? posts[0].id : '';
   },
 
-  loadCommentData(postId) {
-    if (!postId) {
-      return;
-    }
-    const { comment_list, comment_list2 } = commentData.getCommentDetailData(postId);
-    this.setData({ comment_list, comment_list2 });
+  async loadCommentData(postId) {
+    if (!postId) return;
+    const { comment_list, comment_list2 } = await commentData.getCommentDetailData(postId);
+    this.setData({
+      comment_list: comment_list || [],
+      comment_list2: comment_list2 || []
+    });
   },
 
   replyComment(e) {
@@ -82,7 +83,7 @@ Page({
       return;
     }
 
-    const { postId, now_reply, now_reply_type, now_parent_id, currentUserId } = this.data;
+    const { postId, now_reply, now_reply_type, now_parent_id } = this.data;
     let parentId = 0;
     let replyId = 0;
 
@@ -95,7 +96,6 @@ Page({
     this.setData({ loadingDetail: true });
     commentData.addComment({
       postId,
-      userId: currentUserId,
       content,
       parentId,
       replyId
@@ -126,10 +126,9 @@ Page({
       return;
     }
 
-    const { postId, currentUserId } = this.data;
+    const { postId } = this.data;
     commentData.addComment({
       postId,
-      userId: currentUserId,
       content,
       parentId: 0,
       replyId: 0
